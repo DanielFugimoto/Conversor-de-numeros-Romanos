@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class Indico {
+    public static void main(String[] args) {
+        try (Scanner leia = new Scanner(System.in)) {
+            int vlr, n;
+            String roma = "";
+            String[] r = { "I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M" };
+            int[] i = { 1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000 };
+
+            System.out.print("Digite um número de 1 até 3999: ");
+            vlr = leia.nextInt();
+
+            n = vlr;
+
+            if (vlr < 3999) {
+                for (int cont = 12; cont > -1; cont--) {
+                    while (vlr >= i[cont]) {
+                        roma += r[cont];
+                        vlr -= i[cont];
+                    }
+
+                }
+                System.out.println("O Algarismo Romano correspondente a " + n + " é " + roma);
+            } else {
+                System.out.print("Valor Inválido!");
+            } 
+        }
+    }
+
+}
