@@ -1,1 +1,3 @@
-# Convers-o-de-n-meros-Romanos
+# Conversor de números romanos
+
+Conversor tanto de números romanos para indio-arábico, quanto vice e versa.
