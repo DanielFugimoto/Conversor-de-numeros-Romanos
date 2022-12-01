@@ -1,45 +1,52 @@
-import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Map;
+import java.util.HashMap;
 
-public class Romano {
-	  
-    public static void main(String[] args)
-    {
-        String s;
-        
-        try (Scanner sc = new Scanner(System.in)) {
-            solution vlr = new solution();
-            System.out.print("Digite um número romano: ");
-            s = sc.next();
-            vlr.romanToInt(s);
+public class RomanToInt {
+
+    public static void main(String[] args) {
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.print("Entre com um número Romano: ");
+
+            String input = scanner.nextLine();
+
+            int result = romanToInt(input);
+
+            System.out.println(result);
         }
     }
-}
-class solution {
-    int romanToInt(String s) {
-        HashMap<Character, Integer> map = new HashMap<>();
 
-        map.put('I', 1);
-        map.put('V', 5);
-        map.put('X', 10);
-        map.put('L', 50);
-        map.put('C', 100);
-        map.put('D', 500);
-        map.put('M', 1000);
 
+    public static int romanToInt(String s) {
         int result = 0;
 
+        Map<Character, Integer> roman = getRomanMap();
+
         for (int i = 0; i < s.length(); i++) {
-            if (i > 0
-                && map.get(s.charAt(i)) > map.get(s.charAt(i - 1))) {
-                result += map.get(s.charAt(i)) - 2 * map.get(s.charAt(i - 1));
+            char c = s.charAt(i);
+            int value = roman.get(c);
+
+            if (i + 1 < s.length() && roman.get(s.charAt(i + 1)) > value) {
+                result -= value;
+            } else {
+                result += value;
             }
-            else {
-                result += map.get(s.charAt(i));
-                System.out.print("O resultado da conversão é: ");
-            }
-            System.out.print(result);
         }
+
+        System.out.print("O seu número romano em Indio-Arabio é: ");
+
         return result;
+    }
+
+    public static Map<Character, Integer> getRomanMap() {
+        Map<Character, Integer> roman = new HashMap<>();
+        roman.put('I', 1);
+        roman.put('V', 5);
+        roman.put('X', 10);
+        roman.put('L', 50);
+        roman.put('C', 100);
+        roman.put('D', 500);
+        roman.put('M', 1000);
+        return roman;
     }
 }
